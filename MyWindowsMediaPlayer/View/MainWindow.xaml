@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MyWindowsMediaPlayer.View.Window1"
         Title="WMP" BorderThickness="0" Icon="472843-appicns_Spotify.png" Background="#FF282828" Topmost="True" WindowStartupLocation="CenterScreen" MinWidth="768" MinHeight="535" Padding="0">
 	<Grid Margin="0">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="56*"/>
-			<ColumnDefinition Width="96*"/>
-			<ColumnDefinition Width="173*"/>
-			<ColumnDefinition Width="129*"/>
+			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<ToolBar Margin="0" VerticalAlignment="Top" Header="" Cursor="Arrow" RenderTransformOrigin="0.5,0.5" BorderBrush="#00000000" Background="#00000000" FontFamily="Segoe UI" Grid.ColumnSpan="4">
+		<ToolBar Margin="0" VerticalAlignment="Top" Header="" Cursor="Arrow" RenderTransformOrigin="0.5,0.5" BorderBrush="#00000000" Background="#00000000" FontFamily="Segoe UI">
 			<ToolBar.Foreground>
 				<SolidColorBrush Color="White" Opacity="0"/>
 			</ToolBar.Foreground>
@@ -19,13 +19,15 @@
 			<Button Content="View" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
 			<Button Content="Help" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
 		</ToolBar>
-		<ListView Grid.ColumnSpan="2" Margin="0,26.96,0,94" Background="#FF2E2E2E" HorizontalAlignment="Left" Width="151.866" ToolTip="">
+		<ListView Margin="10,26.96,0,64.754" Background="#FF2E2E2E" ToolTip="" Foreground="Gray" BorderBrush="#00000000" HorizontalAlignment="Left" Width="210.879">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn/>
 				</GridView>
 			</ListView.View>
 		</ListView>
+		<Border BorderBrush="#00000000" BorderThickness="1" Margin="225.879,26.96,10,64.754" Background="#FF2E2E2E"/>
+		<Border BorderBrush="#00000000" BorderThickness="1" HorizontalAlignment="Left" Height="49.754" Margin="10,445.646,0,0" VerticalAlignment="Top" Width="741.6" Background="#FF2E2E2E"/>
         
 	</Grid>
 </Window>
