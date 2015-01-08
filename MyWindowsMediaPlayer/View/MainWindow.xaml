@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MyWindowsMediaPlayer.View.Window1"
-        Title="WMP" Height="480" Width="640" BorderThickness="0" Icon="472843-appicns_Spotify.png" Background="#FF282828" Topmost="True" WindowStartupLocation="CenterScreen">
+        Title="WMP" BorderThickness="0" Icon="472843-appicns_Spotify.png" Background="#FF282828" Topmost="True" WindowStartupLocation="CenterScreen" MinWidth="768" MinHeight="535" Padding="0">
 	<Grid Margin="0">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="56*"/>
@@ -19,7 +19,7 @@
 			<Button Content="View" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
 			<Button Content="Help" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
 		</ToolBar>
-		<ListView Grid.ColumnSpan="2" Margin="0,26.96,0,10" Background="#FF2E2E2E" HorizontalAlignment="Left" Width="151.866">
+		<ListView Grid.ColumnSpan="2" Margin="0,26.96,0,94" Background="#FF2E2E2E" HorizontalAlignment="Left" Width="151.866" ToolTip="">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn/>
