@@ -17,11 +17,47 @@ namespace MyWindowsMediaPlayer.View
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+
+    enum MediaState
     {
-        public Window1()
+        Audio,
+        Image,
+        Video,
+        Unknown,
+        Limit
+    }
+
+    public partial class WindowMedia : Window
+    {
+        private string[] PathMedias;
+        private int CurrentStateIndex { get; set; }
+
+        public WindowMedia()
         {
+            Initialize();
             InitializeComponent();
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+        }
+
+        private void Initialize()
+        {
+            CurrentStateIndex = (int)MediaState.Audio;
+            PathMedias = new string[(int)MediaState.Limit];
+
+            PathMedias[(int)MediaState.Audio] = "AudioBar.xaml";
+            PathMedias[(int)MediaState.Image] = "ImageBar.xaml";
+            PathMedias[(int)MediaState.Video] = "VideoBar.xaml";
+            PathMedias[(int)MediaState.Unknown] = "";
+        }
+
+        private void OnPlayClick(object sender, RoutedEventArgs e)
+        {
+            MediaView.Play();
+        }
+
+        private void OnPauseClick(object sender, RoutedEventArgs e)
+        {
+            MediaView.Pause();
         }
     }
 }
