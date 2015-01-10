@@ -61,35 +61,42 @@ namespace MyWindowsMediaPlayer.View
         public void OnClickAudioRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Audio;
-            NModel.LoadFolder();
             FilesListBox.ItemsSource = NModel.GetMusics();
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickImageRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Image;
-            NModel.LoadFolder();
             FilesListBox.ItemsSource = NModel.GetImages();
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickVideoRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Video;
-            NModel.LoadFolder();
             FilesListBox.ItemsSource = NModel.GetVideos();
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
         /***************** END *****************/
 
         public void OnSelectItem(object sender, RoutedEventArgs e)
         {
+            if (FilesListBox.SelectedItem == null)
+                return;
             CurrentFilePath = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
             MediaView.Source = new Uri(CurrentFilePath, UriKind.Relative);
             MediaView.Play();
+            SelectPath.Content = CurrentFilePath;
+        }
+
+        public void OnSelectPath(object sender, RoutedEventArgs e)
+        {
+            NModel.LoadFolder();
         }
 
         public void OnDoubleClickItem(object sender, RoutedEventArgs e)
         {
-
         }
    }
 }

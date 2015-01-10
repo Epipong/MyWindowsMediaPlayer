@@ -23,9 +23,9 @@
             <MediaElement x:Name="MediaView" LoadedBehavior="Manual" Source="test.jpg"  Margin="-1,1.2,1.2,-1"/>
 		</Border>
 		<Border BorderBrush="#00000000" BorderThickness="1" Margin="10,0,10,10" Background="#002E2E2E" Height="49.754" VerticalAlignment="Bottom">
-			<Frame Name="MediaBar" Source="View/ImageBar.xaml" Content="Frame" Background="#FF2E2E2E"/>
+			<Frame NavigationUIVisibility="Hidden" Name="MediaBar" Source="View/ImageBar.xaml" Content="Frame" Background="#FF2E2E2E"/>
 		</Border>
-        <ListView x:Name="FilesListBox" SelectionChanged="OnSelectItem" ItemsSource="{Binding FilesList}" HorizontalAlignment="Left" Margin="10,57.227,0,64.754" Width="210.879" Background="#FF2E2E2E" BorderBrush="#00828790" Foreground="Gray">
+        <ListView x:Name="FilesListBox" SelectionChanged="OnSelectItem" ItemsSource="{Binding FilesList}" HorizontalAlignment="Left" Margin="10,77.187,0,69.754" Width="210.879" Background="#FF2E2E2E" BorderBrush="#00828790" Foreground="Gray">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -46,6 +46,7 @@
 			<RadioButton x:Name="ImageRadio" Click="OnClickImageRadio" Content="Image" Margin="14,0" Foreground="Gray" BorderBrush="#00707070" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right"/>
 			<RadioButton x:Name="VideoRadio" Click="OnClickVideoRadio" Content="Video" Margin="12,0,0,0" Foreground="Gray" BorderBrush="#00707070" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 		</StackPanel>
+        <Button Click="OnSelectPath" x:Name="SelectPath" Content="Select a directory" HorizontalAlignment="Left" Margin="10,57.227,0,0" VerticalAlignment="Top" Width="208.247" Background="#FF2E2E2E" Foreground="Gray" BorderBrush="#00707070"/>
         
 	</Grid>
 </Window>
