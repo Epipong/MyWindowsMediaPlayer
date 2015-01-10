@@ -24,5 +24,17 @@ namespace MyWindowsMediaPlayer.View
         {
             InitializeComponent();
         }
+
+        private void OnPlayClick(object sender, RoutedEventArgs e)
+        {
+            Play.Visibility = Visibility.Collapsed;
+            Pause.Visibility = Visibility.Visible;
+        }
+
+        private void OnPauseClick(object sender, RoutedEventArgs e)
+        {
+            Pause.Visibility = Visibility.Collapsed;
+            Play.Visibility = Visibility.Visible;
+        }
     }
 }
