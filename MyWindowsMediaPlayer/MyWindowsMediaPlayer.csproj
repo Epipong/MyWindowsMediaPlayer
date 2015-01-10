@@ -145,6 +145,7 @@
     <Resource Include="View\472843-appicns_Spotify.png" />
     <Resource Include="View\forward.png" />
     <Resource Include="View\images.png" />
+    <Resource Include="View\music.png" />
     <Resource Include="View\rewind.png" />
   </ItemGroup>
   <ItemGroup>

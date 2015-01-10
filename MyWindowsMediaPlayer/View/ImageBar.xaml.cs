@@ -30,10 +30,5 @@ namespace MyWindowsMediaPlayer.View
         {
             
         }
-
-        private void Play_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

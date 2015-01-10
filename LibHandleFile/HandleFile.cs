@@ -46,7 +46,8 @@ namespace LibHandleFile
                                             ".wmv",
                                             ".mkv",
                                             ".mka",
-                                            ".mks"};
+                                            ".mks",
+                                            ".mp4"};
 
         private string[] musicExtensions = {".mp2",
                                             ".mp3",
