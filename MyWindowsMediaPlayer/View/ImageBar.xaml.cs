@@ -12,17 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace MyWindowsMediaPlayer.View
 {
     /// <summary>
     /// Interaction logic for ImageBar.xaml
     /// </summary>
-    public partial class ImageBar : UserControl
+    public partial class ImageBar : System.Windows.Controls.UserControl
     {
         public ImageBar()
         {
             InitializeComponent();
+        }
+
+        private void OnPlayClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

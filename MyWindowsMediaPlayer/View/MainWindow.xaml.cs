@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace MyWindowsMediaPlayer.View
 {
@@ -34,20 +35,19 @@ namespace MyWindowsMediaPlayer.View
 
         public WindowMedia()
         {
-            Initialize();
             InitializeComponent();
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+            Initialize();
         }
 
         private void Initialize()
         {
-            CurrentStateIndex = (int)MediaState.Audio;
+            CurrentStateIndex = (int)MediaState.Image;
             PathMedias = new string[(int)MediaState.Limit];
-
             PathMedias[(int)MediaState.Audio] = "AudioBar.xaml";
             PathMedias[(int)MediaState.Image] = "ImageBar.xaml";
             PathMedias[(int)MediaState.Video] = "VideoBar.xaml";
             PathMedias[(int)MediaState.Unknown] = "";
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         private void OnPlayClick(object sender, RoutedEventArgs e)

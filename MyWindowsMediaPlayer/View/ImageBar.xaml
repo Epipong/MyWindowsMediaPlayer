@@ -10,7 +10,7 @@
             <Button x:Name="Rewind" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
             	<Image x:Name="RewindIcon" Source="rewind.png" Height="37.754" Width="65"/>
             </Button>
-    		<Button x:Name="Play" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+    		<Button x:Name="Play" Click="OnPlayClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
     			<Image x:Name="PlayIcon" Source="images.png" Height="37.754" Width="65"/>
     		</Button>
     		<Button x:Name="Forward" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
