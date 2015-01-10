@@ -21,7 +21,7 @@ namespace MyWindowsMediaPlayer.Model
         ** Attribut
         */
         private Dictionary<string, List<string>> playlists = new Dictionary<string, List<string>>();
-        private string currentPlaylist;
+        private string currentPlaylist = "";
         private XmlSerializer serializer = new XmlSerializer(typeof(List<string>));
 
         /*
@@ -41,7 +41,13 @@ namespace MyWindowsMediaPlayer.Model
                 if (System.IO.Path.GetExtension(playlistPath) != playlistExtension)
                     continue;
                 stream = File.OpenRead(playlistPath);
-                playlistFiles = serializer.Deserialize(stream) as List<string>;
+                try {
+                    playlistFiles = serializer.Deserialize(stream) as List<string>;
+                }
+                catch (System.InvalidOperationException e) {
+                    stream.Close();
+                    continue;
+                }
                 playlists.Add(System.IO.Path.GetFileNameWithoutExtension(playlistPath), playlistFiles);
                 stream.Close();
             }
@@ -86,11 +92,14 @@ namespace MyWindowsMediaPlayer.Model
         */
         public void AddPlaylist(string playlistName)
         {
+            if (playlists.ContainsKey(playlistName))
+                return;
             playlists.Add(playlistName, new List<string>());
         }
-        public void DeletePlayliste(string playlistName)
+        public void DeletePlaylist(string playlistName)
         {
-            playlists.Remove(playlistName);
+            if (playlists.ContainsKey(playlistName))
+                playlists.Remove(playlistName);
         }
         public string[] GetPlaylistes()
         {
@@ -104,6 +113,8 @@ namespace MyWindowsMediaPlayer.Model
         }
         public bool LoadPlaylist(string playlistName)
         {
+            if (playlists.ContainsKey(playlistName) == false)
+                return false;
             currentPlaylist = playlistName;
             base.HandleLoadFiles(playlists[currentPlaylist].ToArray());
             return true;
@@ -114,11 +125,19 @@ namespace MyWindowsMediaPlayer.Model
         */
         public void AddFile(string filePath)
         {
+            if (playlists.ContainsKey(currentPlaylist) == false)
+                return;
+            if (playlists[currentPlaylist].Contains(filePath))
+                return;
             playlists[currentPlaylist].Add(filePath);
             LoadPlaylist(currentPlaylist);
         }
         public void DeleteFile(string filePath)
         {
+            if (playlists.ContainsKey(currentPlaylist) == false)
+                return;
+            if (playlists[currentPlaylist].Contains(filePath) == false)
+                return;
             playlists[currentPlaylist].Remove(filePath);
             LoadPlaylist(currentPlaylist);
         }

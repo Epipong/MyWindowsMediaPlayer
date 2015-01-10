@@ -133,7 +133,12 @@ namespace LibHandleFile
             CleanOldFile();
             foreach (string filePath in files)
             {
-                data = GetDataFromPath(filePath);
+                try {
+                    data = GetDataFromPath(filePath);
+                }
+                catch (System.IO.FileNotFoundException e){
+                    continue;
+                }
                 SortLoadFiles(data);
             }
         }

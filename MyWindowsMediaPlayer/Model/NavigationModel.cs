@@ -16,9 +16,19 @@ namespace MyWindowsMediaPlayer.Model
         */
         public bool LoadFolder()
         {
+            string[] files;
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
-            string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+            try {
+                files = Directory.GetFiles(fbd.SelectedPath);
+            }
+            catch (UnauthorizedAccessException e) {
+                return false;
+            }
+            catch (ArgumentException e) {
+                return false;
+            }
 
             base.HandleLoadFiles(files);
             return true;
