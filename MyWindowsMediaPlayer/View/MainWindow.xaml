@@ -10,22 +10,13 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<ToolBar Margin="0" VerticalAlignment="Top" Header="" Cursor="Arrow" RenderTransformOrigin="0.5,0.5" BorderBrush="#00000000" Background="#00000000" FontFamily="Segoe UI">
-			<ToolBar.Foreground>
-				<SolidColorBrush Color="White" Opacity="0"/>
-			</ToolBar.Foreground>
-			<Button Content="File" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="32"/>
-			<Button Content="Edit" Height="21.96" VerticalAlignment="Top" Background="#00000000" Foreground="Gray" Width="34"/>
-			<Button Content="View" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
-			<Button Content="Help" Height="21.96" VerticalAlignment="Top" Foreground="Gray" Width="39"/>
-		</ToolBar>
-		<Border BorderBrush="#00000000" BorderThickness="1" Margin="225.879,26.96,10,64.754" Background="#FF2E2E2E">
-            <MediaElement x:Name="MediaView" LoadedBehavior="Manual" Source="test.jpg"  Margin="-1,1.2,1.2,-1"/>
+		<Border BorderBrush="#00000000" BorderThickness="1" Margin="225.879,57.227,10,64.754" Background="#FF171717">
+            <MediaElement x:Name="MediaView" LoadedBehavior="Manual" Source="test.jpg"  Margin="0"/>
 		</Border>
 		<Border BorderBrush="#00000000" BorderThickness="1" Margin="10,0,10,10" Background="#002E2E2E" Height="49.754" VerticalAlignment="Bottom">
-			<Frame NavigationUIVisibility="Hidden" Name="MediaBar" Source="View/ImageBar.xaml" Content="Frame" Background="#FF2E2E2E"/>
+            <Frame Name="MediaBar" Source="" Content="{Binding Path=PathMedias[CurrentStateIndex], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FF171717" NavigationUIVisibility="Hidden"/>
 		</Border>
-        <ListView x:Name="FilesListBox" SelectionChanged="OnSelectItem" ItemsSource="{Binding FilesList}" HorizontalAlignment="Left" Margin="10,77.187,0,69.754" Width="210.879" Background="#FF2E2E2E" BorderBrush="#00828790" Foreground="Gray">
+        <ListView x:Name="FilesListBox" SelectionChanged="OnSelectItem" ItemsSource="{Binding FilesList}" HorizontalAlignment="Left" Margin="10,77.187,0,64.754" Width="210.879" Background="#FF2E2E2E" BorderBrush="#00828790" Foreground="Gray">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -46,7 +37,25 @@
 			<RadioButton x:Name="ImageRadio" Click="OnClickImageRadio" Content="Image" Margin="14,0" Foreground="Gray" BorderBrush="#00707070" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right"/>
 			<RadioButton x:Name="VideoRadio" Click="OnClickVideoRadio" Content="Video" Margin="12,0,0,0" Foreground="Gray" BorderBrush="#00707070" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 		</StackPanel>
-        <Button Click="OnSelectPath" x:Name="SelectPath" Content="Select a directory" HorizontalAlignment="Left" Margin="10,57.227,0,0" VerticalAlignment="Top" Width="208.247" Background="#FF2E2E2E" Foreground="Gray" BorderBrush="#00707070"/>
+        <Button Click="OnSelectPath" x:Name="SelectPath" Content="Select a directory" HorizontalAlignment="Left" Margin="10,57.227,0,0" VerticalAlignment="Top" Width="210.879" Background="#FF2E2E2E" Foreground="Gray" BorderBrush="#00707070" ToolTip="Click to select"/>
+        <Border Height="23" Margin="0,29.227,10,0" VerticalAlignment="Top" CornerRadius="12" Background="#FF7C7C7C" HorizontalAlignment="Right" Width="256" >
+        	<StackPanel Margin="10,0" Orientation="Vertical">
+                <Grid Height="23">
+                    <Image Margin="0,0,205.8,0" Source="Search.png"/>
+                    <TextBox x:Name="SearchURLData" Margin="30.2,0,0,0" KeyDown="OnEnterPressKeyDown" SelectionBrush="#003399FF" BorderBrush="#00ABADB3" Foreground="White" ToolTip="Write URL source (video, music, image...)">
+                    	<TextBox.Background>
+                    		<SolidColorBrush Opacity="0"/>
+                    	</TextBox.Background>
+                    </TextBox>
+                </Grid>
+        	</StackPanel>
+        </Border>
+        <Menu HorizontalAlignment="Left" Height="29.227" VerticalAlignment="Top" Width="761.6" Background="#00F0F0F0" Foreground="Gray">
+        	<MenuItem Header="File" Height="29.227"/>
+        	<MenuItem Header="Edit"/>
+        	<MenuItem Header="View"/>
+        	<MenuItem Header="Help"/>
+        </Menu>
         
 	</Grid>
 </Window>

@@ -147,6 +147,7 @@
     <Resource Include="View\images.png" />
     <Resource Include="View\music.png" />
     <Resource Include="View\rewind.png" />
+    <Resource Include="View\Search.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\play.png" />

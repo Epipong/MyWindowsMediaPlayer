@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 
 using LibHandleFile;
+using System.ComponentModel;
 
 namespace MyWindowsMediaPlayer.View
 {
@@ -53,8 +54,8 @@ namespace MyWindowsMediaPlayer.View
             PathMedias[(int)MediaState.Image] = "ImageBar.xaml";
             PathMedias[(int)MediaState.Video] = "VideoBar.xaml";
             PathMedias[(int)MediaState.Unknown] = "";
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
             NModel = new Model.NavigationModel();
+            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         /***************** RADIO BUTTON *****************/
@@ -87,7 +88,6 @@ namespace MyWindowsMediaPlayer.View
             CurrentFilePath = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
             MediaView.Source = new Uri(CurrentFilePath, UriKind.Relative);
             MediaView.Play();
-            SelectPath.Content = CurrentFilePath;
         }
 
         public void OnSelectPath(object sender, RoutedEventArgs e)
@@ -97,6 +97,16 @@ namespace MyWindowsMediaPlayer.View
 
         public void OnDoubleClickItem(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        public void OnEnterPressKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {/*
+                MediaView.Source = new Uri(SearchURLData.Text, UriKind.Relative);
+                MediaView.Play();*/
+            }
         }
    }
 }
