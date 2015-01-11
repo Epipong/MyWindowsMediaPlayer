@@ -195,5 +195,22 @@ namespace MyWindowsMediaPlayer.View
             Play.Visibility = Visibility.Visible;
             MediaView.Pause();
         }
+
+        private void OnRewindClick(object sender, RoutedEventArgs e)
+        {
+            if (FilesListBox.Items.Count < 2)
+                return;
+            if (FilesListBox.SelectedIndex > 0)
+                --FilesListBox.SelectedIndex;
+            else
+                FilesListBox.SelectedIndex = FilesListBox.Items.Count - 1;
+        }
+
+        private void OnForwardClick(object sender, RoutedEventArgs e)
+        {
+            if (FilesListBox.Items.Count < 2)
+                return;
+            FilesListBox.SelectedIndex = (FilesListBox.SelectedIndex + 1) % FilesListBox.Items.Count;
+        }
     }
 }

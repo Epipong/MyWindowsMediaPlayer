@@ -30,7 +30,7 @@
             <!--<Frame x:Name="MediaBar" Source="" Content="{Binding PathMedias[CurrentStateIndex], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FF171717" NavigationUIVisibility="Hidden"/>-->
             <Grid>
                 <StackPanel Height="47.754" VerticalAlignment="Top" Background="#00000000" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="Rewind" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Button x:Name="Rewind" Click="OnRewindClick"  Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
                         <Image x:Name="RewindIcon" Source="rewind.png"/>
                     </Button>
                     <Button x:Name="Play" Click="OnPlayClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
@@ -39,7 +39,7 @@
                     <Button x:Name="Pause" Click="OnPauseClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070" Visibility="Collapsed">
                         <Image x:Name="PauseIcon" Source="pause.png" Height="37.754" Width="65"/>
                     </Button>
-                    <Button x:Name="Forward" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Button x:Name="Forward" Click="OnForwardClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
                         <Image x:Name="ForwardIcon" Source="forward.png"/>
                     </Button>
                 </StackPanel>
