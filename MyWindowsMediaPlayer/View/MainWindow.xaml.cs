@@ -58,7 +58,6 @@ namespace MyWindowsMediaPlayer.View
             PathMedias[(int)MediaState.Unknown] = "";
             NModel = new Model.NavigationModel();
             PModel = new Model.PlaylistModel();
-            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         /***************** RADIO BUTTON *****************/
@@ -69,7 +68,6 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetMusics();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetMusics();
-            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickImageRadio(object sender, RoutedEventArgs e)
@@ -79,7 +77,6 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetImages();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetImages();
-            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickVideoRadio(object sender, RoutedEventArgs e)
@@ -89,7 +86,6 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetVideos();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetVideos();
-            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
         /***************** END *****************/
 
@@ -118,11 +114,7 @@ namespace MyWindowsMediaPlayer.View
 
         public void OnEnterPressKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.Return)
-            {/*
-                MediaView.Source = new Uri(SearchURLData.Text, UriKind.Relative);
-                MediaView.Play();*/
-            }
+            return;
         }
 
         public void OnAdd(object sender, RoutedEventArgs e){
@@ -140,7 +132,7 @@ namespace MyWindowsMediaPlayer.View
             if (FilesListBox.SelectedItem != null &&
                 ((HandleFile.FileData)FilesListBox.SelectedItem).name != null &&
                 ((HandleFile.FileData)FilesListBox.SelectedItem).name != "")
-                PModel.DeleteFile(((HandleFile.FileData)FilesListBox.SelectedItem).name);
+                PModel.DeleteFile(((HandleFile.FileData)FilesListBox.SelectedItem).path);
         }
         public void OnSeeAll(object sender, RoutedEventArgs e)
         {
