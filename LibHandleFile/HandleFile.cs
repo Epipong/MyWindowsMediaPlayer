@@ -144,45 +144,28 @@ namespace LibHandleFile
         }
 
         /*
-        ** Fct for List<fileData>::sort
-        */
-        private static int CompareName(FileData first, FileData second)
-        {
-            return first.name.CompareTo(second.name);
-        }
-        private static int CompareCreate(FileData first, FileData second)
-        {
-            return first.create.CompareTo(second.create);
-        }
-        private static int CompareAccess(FileData first, FileData second)
-        {
-            return first.lastAccess.CompareTo(second.lastAccess);
-        }
-        private static int CompareSize(FileData first, FileData second)
-        {
-            return first.size.CompareTo(second.size);
-        }
-
-        /*
         ** Handle files sort
         */
-        private void SortFiles(List<FileData> files, string sortType)
+        private void SortFiles(ref List<FileData> files, string sortType)
         {
+            IEnumerable<FileData> query;
+
             switch (sortType)
             {
                 case "create":
-                    files.Sort(CompareCreate);
+                    query = from data in files orderby data.create descending select data;
                     break;
                 case "access":
-                    files.Sort(CompareAccess);
+                    query = from data in files orderby data.lastAccess descending select data;
                     break;
                 case "size":
-                    files.Sort(CompareSize);
+                    query = from data in files orderby data.size descending select data;
                     break;
                 default:
-                    files.Sort(CompareName);
+                    query = from data in files orderby data.name select data;
                     break;
             }
+            files = query.ToList();
         }
 
         /*
@@ -190,17 +173,17 @@ namespace LibHandleFile
         */
         public List<FileData> GetImages(string sortType = "name")
         {
-            SortFiles(images, sortType);
+            SortFiles(ref images, sortType);
             return images;
         }
         public List<FileData> GetVideos(string sortType = "name")
         {
-            SortFiles(videos, sortType);
+            SortFiles(ref videos, sortType);
             return videos;
         }
         public List<FileData> GetMusics(string sortType = "name")
         {
-            SortFiles(musics, sortType);
+            SortFiles(ref musics, sortType);
             return musics;
         }
     }
