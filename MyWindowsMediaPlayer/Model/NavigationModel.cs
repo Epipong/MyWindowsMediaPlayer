@@ -23,10 +23,7 @@ namespace MyWindowsMediaPlayer.Model
             try {
                 files = Directory.GetFiles(fbd.SelectedPath);
             }
-            catch (UnauthorizedAccessException e) {
-                return false;
-            }
-            catch (ArgumentException e) {
+            catch (Exception e) {
                 return false;
             }
 

@@ -44,7 +44,7 @@ namespace MyWindowsMediaPlayer.Model
                 try {
                     playlistFiles = serializer.Deserialize(stream) as List<string>;
                 }
-                catch (System.InvalidOperationException e) {
+                catch (Exception e) {
                     stream.Close();
                     continue;
                 }
@@ -62,9 +62,15 @@ namespace MyWindowsMediaPlayer.Model
             foreach (KeyValuePair<string, List<string>> elem in playlists)
             {
                 playlistFile = GetPlaylistFile(elem.Key);
-                stream = File.OpenWrite(playlistFile);
-                serializer.Serialize(stream, elem.Value);
-                stream.Close();
+                try
+                {
+                    stream = File.OpenWrite(playlistFile);
+                    serializer.Serialize(stream, elem.Value);
+                    stream.Close();
+                }
+                catch (Exception e) {
+                    continue;
+                }
             }
         }
 

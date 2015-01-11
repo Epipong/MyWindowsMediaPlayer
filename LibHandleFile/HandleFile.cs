@@ -136,7 +136,7 @@ namespace LibHandleFile
                 try {
                     data = GetDataFromPath(filePath);
                 }
-                catch (System.IO.FileNotFoundException e){
+                catch (Exception e){
                     continue;
                 }
                 SortLoadFiles(data);
