@@ -58,7 +58,7 @@ namespace MyWindowsMediaPlayer.View
             PathMedias[(int)MediaState.Unknown] = "";
             NModel = new Model.NavigationModel();
             PModel = new Model.PlaylistModel();
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         /***************** RADIO BUTTON *****************/
@@ -69,7 +69,7 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetMusics();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetMusics();
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickImageRadio(object sender, RoutedEventArgs e)
@@ -79,7 +79,7 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetImages();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetImages();
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickVideoRadio(object sender, RoutedEventArgs e)
@@ -89,7 +89,7 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = NModel.GetVideos();
             else if (typeCurrentList == "playlistFile")
                 FilesListBox.ItemsSource = PModel.GetVideos();
-            MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
+            //MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
         /***************** END *****************/
 
@@ -100,6 +100,8 @@ namespace MyWindowsMediaPlayer.View
             CurrentFilePath = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
             MediaView.Source = new Uri(CurrentFilePath, UriKind.Relative);
             Filename.Content = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
+            Play.Visibility = Visibility.Collapsed;
+            Pause.Visibility = Visibility.Visible;
             MediaView.Play();
         }
 
@@ -177,5 +179,21 @@ namespace MyWindowsMediaPlayer.View
                 FilesListBox.ItemsSource = PModel.GetPlaylistes();
             }
         }
-   }
+
+        private void OnPlayClick(object sender, RoutedEventArgs e)
+        {
+            if (CurrentFilePath == null || CurrentFilePath == "")
+                return;
+            Play.Visibility = Visibility.Collapsed;
+            Pause.Visibility = Visibility.Visible;
+            MediaView.Play();
+        }
+
+        private void OnPauseClick(object sender, RoutedEventArgs e)
+        {
+            Pause.Visibility = Visibility.Collapsed;
+            Play.Visibility = Visibility.Visible;
+            MediaView.Pause();
+        }
+    }
 }

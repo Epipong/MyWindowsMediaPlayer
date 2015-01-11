@@ -27,8 +27,24 @@
             <MediaElement x:Name="MediaView" LoadedBehavior="Manual" Source="test.jpg"  Margin="0"/>
 		</Border>
 		<Border BorderBrush="#00000000" BorderThickness="1" Margin="10,0,10,10" Background="#002E2E2E" Height="49.754" VerticalAlignment="Bottom">
-            <Frame x:Name="MediaBar" Source="" Content="{Binding PathMedias[CurrentStateIndex], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FF171717" NavigationUIVisibility="Hidden"/>
-		</Border>
+            <!--<Frame x:Name="MediaBar" Source="" Content="{Binding PathMedias[CurrentStateIndex], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FF171717" NavigationUIVisibility="Hidden"/>-->
+            <Grid>
+                <StackPanel Height="47.754" VerticalAlignment="Top" Background="#00000000" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="Rewind" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+                        <Image x:Name="RewindIcon" Source="rewind.png"/>
+                    </Button>
+                    <Button x:Name="Play" Click="OnPlayClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+                        <Image x:Name="PlayIcon_Copy" Source="play.png" Height="32" Width="32"/>
+                    </Button>
+                    <Button x:Name="Pause" Click="OnPauseClick" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070" Visibility="Collapsed">
+                        <Image x:Name="PauseIcon" Source="pause.png" Height="37.754" Width="65"/>
+                    </Button>
+                    <Button x:Name="Forward" Width="75" Margin="0" Foreground="Gray" Background="#00DDDDDD" BorderBrush="#00707070">
+                        <Image x:Name="ForwardIcon" Source="forward.png"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
         <ListView x:Name="FilesListBox" SelectionChanged="OnSelectItem" ItemsSource="{Binding FilesList}" HorizontalAlignment="Left" Margin="10,77.187,0,64.754" Width="210.879" Background="#FF2E2E2E" BorderBrush="#00828790" Foreground="Gray">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
