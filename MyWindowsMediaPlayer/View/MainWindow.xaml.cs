@@ -37,6 +37,8 @@ namespace MyWindowsMediaPlayer.View
         private int CurrentStateIndex { get; set; }
         private string CurrentFilePath { get; set; }
         private Model.NavigationModel NModel;
+        private Model.PlaylistModel PModel;
+        private string typeCurrentList;
 
         public WindowMedia()
         {
@@ -55,6 +57,7 @@ namespace MyWindowsMediaPlayer.View
             PathMedias[(int)MediaState.Video] = "VideoBar.xaml";
             PathMedias[(int)MediaState.Unknown] = "";
             NModel = new Model.NavigationModel();
+            PModel = new Model.PlaylistModel();
             MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
@@ -62,21 +65,30 @@ namespace MyWindowsMediaPlayer.View
         public void OnClickAudioRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Audio;
-            FilesListBox.ItemsSource = NModel.GetMusics();
+            if (typeCurrentList == "folder")
+                FilesListBox.ItemsSource = NModel.GetMusics();
+            else if (typeCurrentList == "playlistFile")
+                FilesListBox.ItemsSource = PModel.GetMusics();
             MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickImageRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Image;
-            FilesListBox.ItemsSource = NModel.GetImages();
+            if (typeCurrentList == "folder")
+                FilesListBox.ItemsSource = NModel.GetImages();
+            else if (typeCurrentList == "playlistFile")
+                FilesListBox.ItemsSource = PModel.GetImages();
             MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
 
         public void OnClickVideoRadio(object sender, RoutedEventArgs e)
         {
             CurrentStateIndex = (int)MediaState.Video;
-            FilesListBox.ItemsSource = NModel.GetVideos();
+            if (typeCurrentList == "folder")
+                FilesListBox.ItemsSource = NModel.GetVideos();
+            else if (typeCurrentList == "playlistFile")
+                FilesListBox.ItemsSource = PModel.GetVideos();
             MediaBar.Source = new Uri(PathMedias[CurrentStateIndex], UriKind.Relative);
         }
         /***************** END *****************/
@@ -93,6 +105,7 @@ namespace MyWindowsMediaPlayer.View
 
         public void OnSelectPath(object sender, RoutedEventArgs e)
         {
+            typeCurrentList = "folder";
             NModel.LoadFolder();
         }
 
@@ -107,6 +120,61 @@ namespace MyWindowsMediaPlayer.View
             {/*
                 MediaView.Source = new Uri(SearchURLData.Text, UriKind.Relative);
                 MediaView.Play();*/
+            }
+        }
+
+        public void OnAdd(object sender, RoutedEventArgs e){
+            if (typeCurrentList != "folder")
+                return;
+            if (FilesListBox.SelectedItem != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != "")
+                PModel.AddFile(((HandleFile.FileData)FilesListBox.SelectedItem).path);
+        }
+        public void OnRemove(object sender, RoutedEventArgs e)
+        {
+            if (typeCurrentList != "playlistFile")
+                return;
+            if (FilesListBox.SelectedItem != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != "")
+                PModel.DeleteFile(((HandleFile.FileData)FilesListBox.SelectedItem).name);
+        }
+        public void OnSeeAll(object sender, RoutedEventArgs e)
+        {
+            typeCurrentList = "playlist";
+            FilesListBox.ItemsSource = PModel.GetPlaylistes();
+        }
+        public void OnLoad(object sender, RoutedEventArgs e)
+        {
+            if (typeCurrentList != "playlist")
+                return;
+            if (FilesListBox.SelectedItem != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != "")
+            {
+                PModel.LoadPlaylist(((HandleFile.FileData)FilesListBox.SelectedItem).name);
+                typeCurrentList = "playlistFile";
+            }
+
+        }
+        public void OnCreate(object sender, RoutedEventArgs e)
+        {
+            typeCurrentList = "playlist";
+            if (SearchURLData.Text != null && SearchURLData.Text != "")
+                PModel.AddPlaylist(SearchURLData.Text);
+            FilesListBox.ItemsSource = PModel.GetPlaylistes();
+        }
+        public void OnDelete(object sender, RoutedEventArgs e)
+        {
+            if (typeCurrentList != "playlist")
+                return;
+            if (FilesListBox.SelectedItem != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != null &&
+                ((HandleFile.FileData)FilesListBox.SelectedItem).name != "")
+            {
+                PModel.DeletePlaylist(((HandleFile.FileData)FilesListBox.SelectedItem).name);
+                FilesListBox.ItemsSource = PModel.GetPlaylistes();
             }
         }
    }

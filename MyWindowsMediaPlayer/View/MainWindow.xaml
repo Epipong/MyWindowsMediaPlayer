@@ -12,14 +12,14 @@
 		</Grid.ColumnDefinitions>
 		<Menu HorizontalAlignment="Left" Height="24.227" VerticalAlignment="Top" Width="761.6" Background="#00F0F0F0" Foreground="Gray">
             <MenuItem Header="File" Height="24.227" Foreground="Gray">
-                <MenuItem Header="Add in playlist" HorizontalAlignment="Left" Background="#00282828" VerticalContentAlignment="Center"/>
-                <MenuItem Header="Remove from playlist" HorizontalAlignment="Left"  Background="#00282828"/>
+                <MenuItem Click="OnAdd" Header="Add in playlist" HorizontalAlignment="Left" Background="#00282828" VerticalContentAlignment="Center"/>
+                <MenuItem Click="OnRemove" Header="Remove from playlist" HorizontalAlignment="Left"  Background="#00282828"/>
             </MenuItem>
             <MenuItem Header="Playlist">
-                <MenuItem Header="See all" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
-                <MenuItem Header="Load" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
-                <MenuItem Header="Create" HorizontalAlignment="Left" Background="#00282828" VerticalContentAlignment="Center"/>
-                <MenuItem Header="Delete" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
+                <MenuItem Click="OnSeeAll" Header="See all" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
+                <MenuItem Click="OnLoad" Header="Load" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
+                <MenuItem Click="OnCreate" Header="Create" HorizontalAlignment="Left" Background="#00282828" VerticalContentAlignment="Center"/>
+                <MenuItem Click="OnDelete" Header="Delete" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
             </MenuItem>
         </Menu>
         

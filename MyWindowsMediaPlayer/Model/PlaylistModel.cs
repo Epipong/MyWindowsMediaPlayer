@@ -99,17 +99,26 @@ namespace MyWindowsMediaPlayer.Model
         public void DeletePlaylist(string playlistName)
         {
             if (playlists.ContainsKey(playlistName))
+            {
                 playlists.Remove(playlistName);
+                try {
+                    if (System.IO.File.Exists(GetPlaylistFile(playlistName)))
+                        System.IO.File.Delete(GetPlaylistFile(playlistName));
+                }
+                catch (Exception e) {
+                    return;
+                }
+            }
         }
-        public string[] GetPlaylistes()
+        public List<FileData> GetPlaylistes()
         {
-            List<string> playlistNames = new List<string>();
+            List<FileData> playlistNames = new List<FileData>();
 
             foreach (KeyValuePair<string, List<string>> elem in playlists)
             {
-                playlistNames.Add(elem.Key);
+                playlistNames.Add(new FileData(){name = elem.Key, path = elem.Key});
             }
-            return playlistNames.ToArray();
+            return playlistNames;
         }
         public bool LoadPlaylist(string playlistName)
         {
