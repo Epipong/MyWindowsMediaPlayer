@@ -87,6 +87,7 @@ namespace MyWindowsMediaPlayer.View
                 return;
             CurrentFilePath = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
             MediaView.Source = new Uri(CurrentFilePath, UriKind.Relative);
+            Filename.Content = ((HandleFile.FileData)FilesListBox.SelectedItem).path;
             MediaView.Play();
         }
 

@@ -11,16 +11,17 @@
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Menu HorizontalAlignment="Left" Height="24.227" VerticalAlignment="Top" Width="761.6" Background="#00F0F0F0" Foreground="Gray">
-                <MenuItem Header="File" Height="24.227" Foreground="Gray">
-        		<MenuItem Header="Open folder" HorizontalAlignment="Left" Background="#FF282828"/>
-        		<MenuItem Header="Close folder" HorizontalAlignment="Left" Width="148.663333333333" Background="#FF282828"/>
+            <MenuItem Header="File" Height="24.227" Foreground="Gray">
+                <MenuItem Header="Open folder" HorizontalAlignment="Left" Background="#00282828" VerticalContentAlignment="Center"/>
+                <MenuItem Header="Close folder" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
+        		<MenuItem Header="Create new playlist" HorizontalAlignment="Left" Width="148.663333333333" Background="#00282828"/>
         	</MenuItem>
         	<MenuItem Header="Edit"/>
         	<MenuItem Header="View"/>
         	<MenuItem Header="Help"/>
         </Menu>
         
-		<Border BorderBrush="#00000000" BorderThickness="1" Margin="225.879,57.227,10,64.754" Background="#FF171717">
+		<Border BorderBrush="#00000000" BorderThickness="1" Margin="225.879,77.187,10,64.754" Background="#FF171717">
             <MediaElement x:Name="MediaView" LoadedBehavior="Manual" Source="test.jpg"  Margin="0"/>
 		</Border>
 		<Border BorderBrush="#00000000" BorderThickness="1" Margin="10,0,10,10" Background="#002E2E2E" Height="49.754" VerticalAlignment="Bottom">
@@ -60,6 +61,9 @@
                 </Grid>
         	</StackPanel>
         </Border>
+        <StackPanel Margin="225.879,57.227,10,0" VerticalAlignment="Top" Background="#FF2E2E2E" Height="14.96">
+        	<Label x:Name="Filename" Content="" Padding="0" VerticalContentAlignment="Center" Foreground="Gray" Margin="10,0" HorizontalContentAlignment="Center"/>
+        </StackPanel>
         
 	</Grid>
 </Window>
